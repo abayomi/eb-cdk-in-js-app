@@ -23,6 +23,7 @@ export class EBApplnStack extends cdk.Stack {
     // Construct an S3 asset Zip from directory up.
     const webAppZipArchive = new s3assets.Asset(this, 'WebAppZip', {
       path: `${__dirname}/../../`, // Adjusted to point two levels up
+      exclude: ['cdk-deployment/**'], // Exclude the entire cdk-deployment folder
     });
 
     // Create a ElasticBeanStalk app.
@@ -110,7 +111,7 @@ export class EBApplnStack extends cdk.Stack {
     ];
 
     const elbEnv = new elasticbeanstalk.CfnEnvironment(this, 'Environment', {
-      environmentName: props?.envName ?? "Environment-cdk-is-subfolder",
+      environmentName: props?.envName ?? "MyWebAppEnvironment-cdk-is-subfolder",
       applicationName: app.applicationName || appName,
       solutionStackName: '64bit Amazon Linux 2023 v6.4.0 running Node.js 22',
       optionSettings: optionSettingProperties,
