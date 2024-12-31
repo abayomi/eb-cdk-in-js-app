@@ -110,7 +110,7 @@ export class EBApplnStack extends cdk.Stack {
     ];
 
     const elbEnv = new elasticbeanstalk.CfnEnvironment(this, 'Environment', {
-      environmentName: props?.envName ?? "MyWebAppEnvironment-cdk-is-subfolder",
+      environmentName: props?.envName ?? "Environment-cdk-is-subfolder",
       applicationName: app.applicationName || appName,
       solutionStackName: '64bit Amazon Linux 2023 v6.4.0 running Node.js 22',
       optionSettings: optionSettingProperties,
